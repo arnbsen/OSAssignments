@@ -7,15 +7,15 @@
 //
 
 #include <stdio.h>
+#include <sys/sem.h>
+#include <sys/stat.h>
 #include <sys/shm.h>
 int main(){
-    int key = 9;
-    int sm = shmget((key_t)345, sizeof(int), IPC_CREAT);
+    int mutex_id = semget((key_t)1234566, 2, IPC_CREAT |SEM_A | SEM_R);
+    int ch = semctl(mutex_id, 1, GETVAL);
     
     
-    int *sh = (int *)shmat(sm, NULL, 0);
-    printf("%d\n",*sh);
-    *sh=1;
-    while(*sh!=0);
-    printf("Other proces: %d\n", *sh);
+    
+    ch = semctl(mutex_id, 1, IPC_RMID);
+    
 }

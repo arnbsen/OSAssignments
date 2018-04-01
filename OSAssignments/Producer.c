@@ -23,19 +23,19 @@ void Signal(int* s){
 int main(int argc, const char * argv[]) {
     
     //Getting shared memory address
-    int mutex_id = shmget(348, sizeof(int), IPC_R | IPC_W); //MUTEX
-    int full_id = shmget(349, sizeof(int), IPC_R | IPC_W); //FULL
-    int empty_id = shmget(357, sizeof(int), IPC_R | IPC_W); //EMPTY
-    int buffer_id = shmget(443, sizeof(int), IPC_R | IPC_W); //BUFFER
+    int mutex_id = shmget((key_t)123,sizeof(int),  0777); //MUTEX
+    int full_id = shmget((key_t)345, sizeof(int),  0777); //FULL
+    int empty_id = shmget((key_t)357, sizeof(int), 0777); //EMPTY
+    int buffer_id = shmget((key_t)443, sizeof(int),0777); //BUFFER
     
     //Attaching values
-    int* mutex = (int *)shmat(mutex_id, NULL, IPC_R | IPC_W);
-    int* full = (int *)shmat(full_id, NULL, IPC_R | IPC_W);
-    int* empty = (int *)shmat(empty_id, NULL, IPC_R | IPC_W);
+    int* mutex = (int *)shmat(mutex_id, NULL, IPC_W | IPC_R);
+    int* full = (int *)shmat(full_id, NULL, IPC_W | IPC_R);
+    int* empty = (int *)shmat(empty_id, NULL, IPC_W | IPC_R);
     int* buffer = (int *)shmat(buffer_id, NULL, IPC_W | IPC_R);
     
     int n=1;
-    sscanf(argv[1], "%d", &n);
+    //sscanf(argv[1], "%d", &n);
     printf("Producer %d is starting\n",n);
     while(1){
         

@@ -10,6 +10,9 @@
 
 int main(int argc, const char * argv[]) {
     // insert code here...
-    printf("Hello, World!\n");
+    int n;
+    sscanf(argv[1], "%d", &n);
+    printf("Hello, World! %d \n",n);
+   
     return 0;
 }

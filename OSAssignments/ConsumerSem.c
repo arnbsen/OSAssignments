@@ -11,23 +11,22 @@
 #include <sys/time.h>
 //Atomic operations on Semaphores
 void Wait(int mtx_id, int n){
-    int mtx;
-    printf("Consumer %d is in waiting\n",n);
-    do {
-         mtx = semctl(mtx_id, 0, GETVAL);
-    } while (mtx<=0);
-    union semun arg;
-    arg.val = mtx - 1;
-    semctl(mtx_id, 0, SETVAL, arg);
-    
+    struct sembuf buf;
+    buf.sem_flg = SEM_UNDO;
+    buf.sem_num = 0;
+    buf.sem_op = -1;
+     printf("%d",semop(mtx_id, &buf, 1));
 }
-int Signal(int s){
-    s = s + 1;
-    return s;
+void Signal(int mtx_id){
+    struct sembuf buf;
+    buf.sem_flg = SEM_UNDO;
+    buf.sem_num = 0;
+    buf.sem_op = 1;
+    printf("%d",semop(mtx_id, &buf, 1));
+    
 }
 int main(int argc, const char * argv[]){
     
-    union semun arg;
     
         time_t t1 = time(NULL);
         int n = 1;
@@ -56,13 +55,9 @@ int main(int argc, const char * argv[]){
             printf("Value of buffer after critical section: %d\n", *buffer);
             
             
-            int mutex = semctl(mutex_id, 0, GETVAL);
-            arg.val = Signal(mutex);
-            semctl(mutex_id, 0, SETVAL, arg);
+            Signal(mutex_id);
             
-            int empty = semctl(empty_id, 0, GETVAL);
-            arg.val = Signal(empty);
-            semctl(empty_id, 0, SETVAL, arg);
+            Signal(empty_id);
             
             
         }

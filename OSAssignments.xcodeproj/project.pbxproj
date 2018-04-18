@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4B6733B6206530B7009C6131 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 4B6733B5206530B7009C6131 /* main.c */; };
+		4BB0E0A22087D54000A2280B /* clearSharedMemorySem.c in Sources */ = {isa = PBXBuildFile; fileRef = 4BE9B7AB207124A300A50B05 /* clearSharedMemorySem.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,8 +23,17 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4B06102A20677E5800D8ABB5 /* createSharedVarsSem.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = createSharedVarsSem.c; sourceTree = "<group>"; };
+		4B06102C20678A9300D8ABB5 /* ProducerSem.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ProducerSem.c; sourceTree = "<group>"; };
+		4B061031206790E200D8ABB5 /* ConsumerSem.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ConsumerSem.c; sourceTree = "<group>"; };
+		4B06C36B20659BEF009B58B1 /* createSharedVars.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = createSharedVars.c; sourceTree = "<group>"; };
+		4B06C36D2065A3BD009B58B1 /* Producer.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Producer.c; sourceTree = "<group>"; };
+		4B06C36F2065A720009B58B1 /* Consumer.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Consumer.c; sourceTree = "<group>"; };
 		4B6733B2206530B7009C6131 /* OSAssignments */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = OSAssignments; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B6733B5206530B7009C6131 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		4B6733BC206530D7009C6131 /* SharedProcess.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = SharedProcess.c; sourceTree = "<group>"; };
+		4B6733BE2065382F009C6131 /* SharedProcess1.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = SharedProcess1.c; sourceTree = "<group>"; };
+		4BE9B7AB207124A300A50B05 /* clearSharedMemorySem.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = clearSharedMemorySem.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +67,15 @@
 			isa = PBXGroup;
 			children = (
 				4B6733B5206530B7009C6131 /* main.c */,
+				4B6733BC206530D7009C6131 /* SharedProcess.c */,
+				4B6733BE2065382F009C6131 /* SharedProcess1.c */,
+				4B06C36B20659BEF009B58B1 /* createSharedVars.c */,
+				4B06C36D2065A3BD009B58B1 /* Producer.c */,
+				4B06C36F2065A720009B58B1 /* Consumer.c */,
+				4B06102A20677E5800D8ABB5 /* createSharedVarsSem.c */,
+				4B06102C20678A9300D8ABB5 /* ProducerSem.c */,
+				4B061031206790E200D8ABB5 /* ConsumerSem.c */,
+				4BE9B7AB207124A300A50B05 /* clearSharedMemorySem.c */,
 			);
 			path = OSAssignments;
 			sourceTree = "<group>";
@@ -119,7 +137,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B6733B6206530B7009C6131 /* main.c in Sources */,
+				4BB0E0A22087D54000A2280B /* clearSharedMemorySem.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

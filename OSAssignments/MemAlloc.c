@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <malloc.h>
+
 #include <limits.h>
 struct Node{
 	int pid;

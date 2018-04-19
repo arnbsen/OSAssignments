@@ -6,16 +6,30 @@
 //  Copyright © 2018 Arnab Sen. All rights reserved.
 //  Unix System V supported semaphores. Use ipcs and ipcrm before running programs otherwise allocation can be a failure.
 //  DO NOT forget to remove Sempahores. They persist in the system even program ends.
-//  Use ipcrm -s <sem_id> or use semctl(sem_id, semnum , IPC_RMID) ALWAYS.
+//  Use ipcrm -s <sem_id> or use semctl(sem_id, semnum , IPC_RMID) ALWAYS (for semaphores).
+//  Use ipcrm -m <shm_id> or use semctl(sem_id, semnum , IPC_RMID) ALWAYS (for shared memory).
+
+
 
 #include <stdio.h>
 #include <sys/sem.h>
 #include <sys/shm.h>
+
+
+/* <-- Required  for Linux systems like Fedora. Please un-comment if using Linux. Because no definition is present -->
+union semun {
+    int     val;            // value for SETVAL
+    struct  semid_ds *buf;  // buffer for IPC_STAT & IPC_SET
+    u_short *array;         // array for GETALL & SETALL
+};
+*/
+
+
+
 int main(){
     
     printf("Initilaiser Program\n");
-    struct semid_ds buf;
-    union semun arg_mutex, arg_full, arg_empty, arg_buffer,all;
+    union semun arg_mutex, arg_full, arg_empty;
     
     //Getting Semaphore ID
     int mutex_id = semget((key_t)1234432, 1, IPC_CREAT|0666); //For mutex

@@ -10,6 +10,17 @@
 #include <sys/sem.h>
 #include <sys/time.h>
 #include <sys/shm.h>
+
+
+/* <-- Required  for Linux systems like Fedora. Please un-comment if using Linux. Because no definition is present -->
+ struct sembuf {
+    u_short sem_num;        // semaphore Number
+    short   sem_op;         // semaphore operation
+    short   sem_flg;        // operation flags
+};
+*/
+
+
 //Atomic operations on Semaphores
 void Wait(int mtx_id, int n){
     struct sembuf buf;
@@ -32,10 +43,10 @@ int main(int argc, const char * argv[]){
     time_t t1 = time(NULL);
     
     //Fetching semaphore
-    int mutex_id = semget((key_t)1234432, 1, IPC_R|IPC_W|IPC_M); //For mutex
-    int full_id = semget((key_t)123455, 1, IPC_R|IPC_W|IPC_M); //For full
-    int empty_id = semget((key_t)123495, 1, IPC_R|IPC_W|IPC_M); //For empty
-    int buffer_id = shmget((key_t)1223, sizeof(int), IPC_R|IPC_W|IPC_M); //Shared variable bufffer
+    int mutex_id = semget((key_t)1234432, 1, 0666)); //For mutex
+    int full_id = semget((key_t)123455, 1, 0666)); //For full
+    int empty_id = semget((key_t)123495, 1, 0666)); //For empty
+    int buffer_id = shmget((key_t)1223, sizeof(int), 0666)); //Shared variable bufffer
     
     //Attaching Shared variable to the system
     int *buffer = (int *)shmat(buffer_id, 0, IPC_R|IPC_W);

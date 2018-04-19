@@ -10,13 +10,15 @@
 #include <sys/sem.h>
 #include <sys/shm.h>
 int main(){
+    
+    
+    printf("Deleting semaphores and shared memory\n");
+    
+    
     //Fetching semaphore
-    int mutex_id = semget((key_t)1234432, 1, IPC_RMID); //For mutex
-    int full_id = semget((key_t)123455, 1, IPC_RMID); //For full
-    int empty_id = semget((key_t)123495, 1,  IPC_RMID); //For empty
-    int buffer_id = shmget((key_t)1223, sizeof(int), IPC_RMID); //Shared variable bufffer
-    
-    
-    
+    semget((key_t)1234432, 1, IPC_RMID); //For mutex
+    semget((key_t)123455, 1, IPC_RMID); //For full
+    semget((key_t)123495, 1,  IPC_RMID); //For empty
+    shmget((key_t)1223, sizeof(int), IPC_RMID); //Shared variable bufffer
     
 }
